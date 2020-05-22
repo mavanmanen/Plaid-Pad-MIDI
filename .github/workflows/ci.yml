@@ -1,6 +1,9 @@
 name: CI
 
-on: [push]
+on:
+  push:
+    tags: 
+      - '*'
 
 jobs:
   build:
@@ -24,3 +27,9 @@ jobs:
       
     - name: Publish
       run: msbuild "src\Plaid Pad MIDI.sln" -t:Publish -p:Configuration=Release
+      
+    - name: Create release
+      uses: ncipolla/release-action@v1
+      with:
+        artifacts: "src/Mavanmanen.PPM/bin/Release/app.publish/**"
+        token: ${{ secrets.GITHUB_TOKEN }}
