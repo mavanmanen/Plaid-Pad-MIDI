@@ -1,6 +1,8 @@
 # Plaid Pad MIDI
 ![Screenshot](images/screenshot.png)
 
+![CI](https://github.com/mavanmanen/Plaid-Pad-MIDI/workflows/CI/badge.svg)
+
 This software will allow you to use MIDI functionality on your Plaid Pad through raw HID communcation and a virtual MIDI device.
 
 ## Usage
