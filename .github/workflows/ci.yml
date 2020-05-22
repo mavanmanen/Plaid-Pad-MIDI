@@ -21,3 +21,6 @@ jobs:
       
     - name: Build
       run: msbuild "src\Plaid Pad MIDI.sln" -p:Configuration=Release
+      
+    - name: Publish
+      run: msbuild "src\Plaid Pad MIDI.sln" -t:Publish -p:Configuration=Release
