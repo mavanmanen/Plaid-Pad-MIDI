@@ -1,24 +1,56 @@
 ﻿using System;
-using System.Runtime.CompilerServices;
 using Mavanmanen.PPM.HID;
+
 using Mavanmanen.PPMC.MIDI;
 
 namespace Mavanmanen.PPM
 {
+    /// <summary>
+    /// Handles all HID and MIDI communication.
+    /// </summary>
     public static class Engine
     {
+        /// <summary>
+        /// The different input types supported by the Plaid Pad.
+        /// </summary>
         private enum InputType
         {
+            /// <summary>
+            /// Undefined input type, something is wrong on the firmware end.
+            /// </summary>
             Undefined,
+
+            /// <summary>
+            /// Rotary encoder.
+            /// </summary>
             Encoder,
+
+            /// <summary>
+            /// Keyboard switch.
+            /// </summary>
             Button
         }
 
         private static VirtualMidiDevice _midiDevice;
+
+        /// <summary>
+        /// Current state of the Plaid Pad.
+        /// </summary>
         public static PadState CurrentState { get; set; } = new PadState();
 
+        /// <summary>
+        /// Invoked when the Plaid Pad is connected.
+        /// </summary>
         public static event EventHandler OnConnected;
+
+        /// <summary>
+        /// Invoked when the Plaid Pad is disconnected.
+        /// </summary>
         public static event EventHandler OnDisconnected;
+
+        /// <summary>
+        /// Starts this engine. This will wait till the correct HID device is connected and create the virtual MIDI device.
+        /// </summary>
         public static void Start()
         {
             HIDManager.OnConnected += HIDManager_OnConnected;
@@ -28,12 +60,19 @@ namespace Mavanmanen.PPM
             _midiDevice = new VirtualMidiDevice("Plaid Pad MIDI");
         }
 
+        /// <summary>
+        /// Stops the engine. This will disconnect with the HID device.
+        /// </summary>
         public static void Stop()
         {
             SendRawHIDMessage(RawHIDMessage.HID_DISCONNECTED);
             HIDManager.StopListening();
         }
 
+        /// <summary>
+        /// Request the current state from the Plaid Pad.
+        /// </summary>
+        /// <returns>The current state.</returns>
         public static PadState GetState()
         {
             var stateData = SendRawHIDMessage(RawHIDMessage.HID_GET_STATE, true);

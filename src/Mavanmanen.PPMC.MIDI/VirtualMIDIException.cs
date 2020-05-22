@@ -22,7 +22,6 @@ namespace Mavanmanen.PPMC.MIDI
         public VirtualMIDIExceptionReasonCode ReasonCode { get; set; }
         public override string Message { get; }
 
-
         public VirtualMIDIException(int reasonCode)
         {
             if (!Enum.IsDefined(typeof(VirtualMIDIExceptionReasonCode), reasonCode))

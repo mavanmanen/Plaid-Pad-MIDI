@@ -19,13 +19,13 @@ namespace Mavanmanen.PPM
 
         private void Engine_OnConnected(object sender, System.EventArgs e)
         {
-            Dispatcher.Invoke(() => MainWindow.Show());
+            Dispatcher.Invoke(() => MainWindow?.Show());
             Dispatcher.Invoke(() => _waitingForDeviceWindow.Hide());
         }
 
         private void Engine_OnDisconnected(object sender, System.EventArgs e)
         {
-            Dispatcher.Invoke(() => MainWindow.Hide());
+            Dispatcher.Invoke(() => MainWindow?.Hide());
             Dispatcher.Invoke(() => _waitingForDeviceWindow.Show());
         }
 

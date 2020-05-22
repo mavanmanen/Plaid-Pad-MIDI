@@ -2,10 +2,14 @@
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
+
 using Mavanmanen.PPM.Annotations;
 
 namespace Mavanmanen.PPM
 {
+    /// <summary>
+    /// Represents the current state of the Plaid Pad.
+    /// </summary>
     public class PadState : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
@@ -19,7 +23,10 @@ namespace Mavanmanen.PPM
         private byte _encoderLeft;
         private byte _encoderRight;
         private bool[] _buttons = new bool[16];
-        
+
+        /// <summary>
+        /// Value of the left rotary encoder, between 0 and 127.
+        /// </summary>
         public byte EncoderLeft
         {
             get => _encoderLeft;
@@ -31,6 +38,9 @@ namespace Mavanmanen.PPM
             }
         }
 
+        /// <summary>
+        /// Value of the right rotary encoder, between 0 and 127.
+        /// </summary>
         public byte EncoderRight
         {
             get => _encoderRight;
@@ -42,6 +52,9 @@ namespace Mavanmanen.PPM
             }
         }
 
+        /// <summary>
+        /// Current state of a button.
+        /// </summary>
         public bool[] Buttons
         {
             get => _buttons;
@@ -53,12 +66,21 @@ namespace Mavanmanen.PPM
             }
         }
 
+        /// <summary>
+        /// Set the value of a button.
+        /// </summary>
+        /// <param name="index">Index of the button.</param>
+        /// <param name="value">The value to set.</param>
         public void SetButton(int index, bool value)
         {
             Buttons[index] = value;
             OnPropertyChanged(nameof(Buttons));
         }
 
+        /// <summary>
+        /// Load the state from the raw data received from the Plaid Pad.
+        /// </summary>
+        /// <param name="rawData">Raw data that was received from the plaid pad.</param>
         public void LoadFromByteData(IEnumerable<byte> rawData)
         {
             var data = rawData.Skip(2).ToArray();

@@ -3,10 +3,17 @@ using System.Runtime.InteropServices;
 
 namespace Mavanmanen.PPMC.MIDI
 {
+    /// <summary>
+    /// Represents a virtual MIDI device.
+    /// </summary>
 	public class VirtualMidiDevice
 	{
         private IntPtr _instance;
 
+        /// <summary>
+        /// Create a new virtual MIDI device with the specified name.
+        /// </summary>
+        /// <param name="portName">Name for the MIDI device.</param>
 		public VirtualMidiDevice(string portName)
 		{
 			_instance = VirtualMIDICreatePortEx2(portName, IntPtr.Zero, IntPtr.Zero, 65535, 1);
@@ -28,6 +35,12 @@ namespace Mavanmanen.PPMC.MIDI
             _instance = IntPtr.Zero;
         }
 
+        /// <summary>
+        /// Send data to the virtual MIDI device.
+        /// </summary>
+        /// <param name="midiChannel">The MIDI channel to send the data on.</param>
+        /// <param name="data1">Value for the first data segment.</param>
+        /// <param name="data2">Value for the second data segment.</param>
         public void SendData(int midiChannel, int data1, int data2)
         { 
             var msg = 0;
@@ -43,6 +56,9 @@ namespace Mavanmanen.PPMC.MIDI
             }
         }
 
+        /// <summary>
+        /// Close the virtual MIDI device connection.
+        /// </summary>
         public void Close() => VirtualMIDIClosePort(_instance);
 
         private const string DllName = "teVirtualMIDI.dll";
