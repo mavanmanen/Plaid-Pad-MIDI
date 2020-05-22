@@ -1,0 +1,14 @@
+﻿<Window x:Class="Mavanmanen.PPM.WaitingForDeviceWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Mavanmanen.PPM"
+        mc:Ignorable="d"
+        Title="Plaid Pad MIDI - Waiting for device" SizeToContent="Height" Width="250"
+        WindowStyle="ToolWindow"
+        WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Label Content="Waiting for device to connect." Margin="4"/>
+    </Grid>
+</Window>
