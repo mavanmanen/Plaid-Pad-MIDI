@@ -33,6 +33,6 @@ Due to V-USB having a limited amount of endpoints, any QMK features that open en
 The Plaid Pad was created by BenRoe ([GitHub](https://github.com/BenRoe) / [Twitter](https://twitter.com/keycapsss)).
 [Buy yours here!](https://keycapsss.com/diy-kits/104/plaid-pad-4x4-numpad)
 
-The art used for the background of the application and the logo is made by [hoyhym](hoyhym.be).
+The art used for the background of the application and the logo is made by [hoyhym](https://hoyhym.be).
 
-VirtualMIDI, LoopMIDI and the SDK was created by [Tobias Erichsen](tobias-erichsen.de/).
+VirtualMIDI, LoopMIDI and the SDK was created by [Tobias Erichsen](https://tobias-erichsen.de/).
